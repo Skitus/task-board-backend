@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx branch-name-lint branchlint.config.json && yarn run test:e2e && yarn run test
+
+# test
