@@ -8,7 +8,7 @@
       },
       "banned": ["wip"],
       "skip": ["skip-ci"],
-      "disallowed": ["master", "develop", "main"],
+      "disallowed": ["master", "main"],
       "separator": "/",
       "msgBranchBanned": "Branches with the name \"%s\" are not allowed.",
       "msgBranchDisallowed": "Pushing to \"%s\" is not allowed, use git-flow.",
