@@ -9,6 +9,7 @@
       "banned": ["wip"],
       "skip": ["skip-ci"],
       "disallowed": ["master", "main"],
+      "allowed": ["develop"],
       "separator": "/",
       "msgBranchBanned": "Branches with the name \"%s\" are not allowed.",
       "msgBranchDisallowed": "Pushing to \"%s\" is not allowed, use git-flow.",
