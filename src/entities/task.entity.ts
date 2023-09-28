@@ -14,7 +14,7 @@ export enum TaskStatus {
 }
 
 @Entity('tasks')
-export class TaskEntity {
+export class Task {
   @PrimaryGeneratedColumn('uuid')
   id: string = uuidv4();
 
