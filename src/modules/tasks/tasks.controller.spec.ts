@@ -8,6 +8,7 @@ const mockTasksService = {
   update: jest.fn(),
   remove: jest.fn(),
   findAll: jest.fn(),
+  findOne: jest.fn(),
 };
 
 describe('TasksController', () => {
@@ -79,9 +80,7 @@ describe('TasksController', () => {
   });
 
   describe('findAll', () => {
-    it('should call tasksService.findAll with correct parameters and return the result', async () => {
-      const page = 1;
-      const limit = 10;
+    it('should call tasksService.findAll and return the result', async () => {
       const mockTasks = [
         {
           id: 'id1',
@@ -97,10 +96,28 @@ describe('TasksController', () => {
 
       mockTasksService.findAll.mockResolvedValue(mockTasks);
 
-      const result = await controller.findAll(page, limit);
+      const result = await controller.findAll();
 
       expect(result).toEqual(mockTasks);
-      expect(mockTasksService.findAll).toHaveBeenCalledWith(page, limit);
+      expect(mockTasksService.findAll).toHaveBeenCalled();
+    });
+  });
+
+  describe('findOne', () => {
+    it('should call tasksService.findOne with correct parameters and return the result', async () => {
+      const id = 'qwe-qweqwe-qwe-qwe-qwe';
+      const resultTask = {
+        id,
+        title: 'Test Task',
+        status: TaskStatus.ToDo,
+      };
+
+      mockTasksService.findOne.mockResolvedValue(resultTask);
+
+      const result = await controller.findOne(id);
+
+      expect(result).toEqual(resultTask);
+      expect(mockTasksService.findOne).toHaveBeenCalledWith(id);
     });
   });
 });

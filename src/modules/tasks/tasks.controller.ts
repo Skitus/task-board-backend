@@ -6,7 +6,6 @@ import {
   Post,
   Delete,
   Get,
-  Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create.dto';
@@ -36,10 +35,12 @@ export class TasksController {
   }
 
   @Get()
-  findAll(
-    @Query('page') page: number,
-    @Query('limit') limit: number,
-  ): Promise<Task[]> {
-    return this.tasksService.findAll(page, limit);
+  findAll(): Promise<Task[]> {
+    return this.tasksService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.findOne(id);
   }
 }

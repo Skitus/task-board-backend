@@ -52,7 +52,7 @@ export class TasksService {
     await this.tasksRepository.remove(task);
   }
 
-  async findAll(page: number = 1, limit: number = 10): Promise<Task[]> {
+  async findAll(): Promise<Task[]> {
     const tasks = await this.tasksRepository.find();
 
     const sortedTasks = tasks.sort((a, b) => {
@@ -63,8 +63,16 @@ export class TasksService {
       return a.title.localeCompare(b.title);
     });
 
-    const start = (+page - 1) * +limit;
-    const end = start + +limit;
-    return sortedTasks.slice(start, end);
+    return sortedTasks;
+  }
+
+  async findOne(id: string): Promise<Task> {
+    const task = await this.tasksRepository.findOne({ where: { id } });
+
+    if (!task) {
+      throw new NotFoundException(`Task with ID ${id} not found`);
+    }
+
+    return task;
   }
 }
